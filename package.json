@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/jsphkm/socket.io-chat/issues"
   },
-  "homepage": "https://github.com/jsphkm/socket.io-chat#readme"
+  "homepage": "https://github.com/jsphkm/socket.io-chat#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
