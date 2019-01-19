@@ -1,0 +1,24 @@
+{
+  "name": "socketio-chat",
+  "version": "1.0.0",
+  "description": "Basic chat web app using socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsphkm/socket.io-chat.git"
+  },
+  "keywords": [
+    "socket.io",
+    "socket",
+    "chat"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsphkm/socket.io-chat/issues"
+  },
+  "homepage": "https://github.com/jsphkm/socket.io-chat#readme"
+}
