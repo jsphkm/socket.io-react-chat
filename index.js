@@ -7,9 +7,13 @@ app.get('/', (req, res) => (
 ));
 
 io.on('connection', (socket) => {
+  socket.broadcast.emit('user_connect', 'a user has joined the room');
   socket.on('chat message', msg => (
     io.emit('chat message', msg)
   ));
+  socket.on('disconnect', () => {
+    socket.broadcast.emit('user_disconnect', 'a user has left the room');
+  });
 });
 
 http.listen(3000, () => (
