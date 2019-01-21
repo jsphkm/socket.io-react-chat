@@ -1,8 +1,8 @@
 const express = require('express');
 
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 app.use(express.static('public'));
 
@@ -11,15 +11,24 @@ app.get('/', (req, res) => (
 ));
 
 io.on('connection', (socket) => {
-  socket.broadcast.emit('user_connect', 'a user has joined the room');
+  socket.on('join_room', (username) => {
+    socket.join('chat room');
+    socket.broadcast.emit('user_connect', `${username} has joined the room`);
+    io.emit('join_room', username);
+
+    socket.on('disconnect', () => {
+      socket.broadcast.emit('user_disconnect', `${username} has left the room`);
+    });
+  });
+
+  // socket.broadcast.emit('user_connect', 'a user has joined the room');
   socket.on('chat message', msg => (
     io.emit('chat message', msg)
   ));
-  socket.on('disconnect', () => {
-    socket.broadcast.emit('user_disconnect', 'a user has left the room');
-  });
+
+
 });
 
-http.listen(3000, () => (
+server.listen(3000, () => (
   console.log('listening on *:3000')
 ));

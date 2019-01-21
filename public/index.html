@@ -8,13 +8,23 @@
   <link rel="stylesheet" href="/index.css" type="text/css">
   </head>
   <body>
-    <div id="chat-container">
-      <ul id="messages"></ul>
-      <form action="">
-        <input id="m" autocomplete="off" /><button>Send</button>
-      </form>
+    <div id="chatroom-container">
+      <div id="chat-container">
+        <ul id="messages"></ul>
+        <form id="message-form" action="">
+          <input id="m" autocomplete="off" /><button>Send</button>
+        </form>
+      </div>
+      <div id="users-container">
+        <form id="username-form" action="">
+          <label for="username-input">Username:</label>
+          <input 
+            id="username-input" type="text" placeholder="Type your username" required />
+          <button id="enter-button" type="submit">Enter Chat</button>
+        </form>
+        <ul id="users"></ul>
+      </div>
     </div>
-    <div id="users-container"></div>
     <script src="/socket.io/socket.io.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.js"
@@ -30,7 +40,7 @@
         socket.on('user_disconnect', (msg) => {
           $('#messages').append($('<li>').text(msg))
         });
-        $('form').submit(function(e){
+        $('#message-form').submit(function(e){
           e.preventDefault(); // prevents page reloading
           socket.emit('chat message', $('#m').val());
           $('#m').val('');
@@ -39,6 +49,14 @@
         socket.on('chat message', (msg) => (
           $('#messages').append($('<li>').text(msg))
         ));
+        $('#username-form').submit((e) => {
+          e.preventDefault();
+          socket.emit('join_room', $('#username-input').val());
+          return false;
+        });
+        socket.on('join_room', (username) => (
+          $('#users').append($('<li>').text(username))
+        ))
       });
     </script>
   </body>
