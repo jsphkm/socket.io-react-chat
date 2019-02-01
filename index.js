@@ -21,9 +21,8 @@ io.on('connection', (socket) => {
     });
   });
 
-  // socket.broadcast.emit('user_connect', 'a user has joined the room');
   socket.on('chat message', msg => (
-    io.emit('chat message', msg)
+    socket.broadcast.emit('chat message', msg)
   ));
 });
 

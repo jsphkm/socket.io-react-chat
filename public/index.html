@@ -42,8 +42,10 @@
         });
         $('#message-form').submit(function(e){
           e.preventDefault(); // prevents page reloading
-          socket.emit('chat message', $('#m').val());
-          $('#m').val('');
+          const userMessage = $('#m')
+          socket.emit('chat message', userMessage.val());
+          $('#messages').append($('<li>').text(userMessage.val()))
+          userMessage.val('');
           return false;
         });
         socket.on('chat message', (msg) => (
