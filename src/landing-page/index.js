@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-dom';
 import "./styles.css";
 
 const LandingPage = () => {
@@ -24,7 +23,7 @@ const LandingPage = () => {
         <form className="name-form">
           <input
           id="fullname-input"
-          placeholder="Enter Your Full Name"
+          placeholder="Your Full Name"
           />
           <button id="fullname-button" type="submit">Enter</button>
         </form>
