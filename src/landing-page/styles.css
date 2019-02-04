@@ -1,26 +1,85 @@
 .landingpage-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
 }
 
+.landingpage-subcontainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .landingpage-header {
+  position: absolute;
+  top: 10px;
+  left: 15px;
   font-weight: 400;
-  font-size: 25px;
+  font-size: 15px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview-icon-container {
+  position: relative;
+  margin: 20px 0;
+}
+
+.preview-icon {
+  background: linear-gradient(#595959, #373737);
+  border-radius: 45px;
+  width: 78px;
+  height: 78px;
+}
+
+.preview-fullname {
+  font-size: 18px;
+}
+
+.preview-initials {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  font-size: 30px;
 }
 
 .name-form {
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
 }
 
-#firstname-input, #lastname-input {
-  border: 1px solid #101010;
-  background-color: #1d1d1d;
-  padding: 10px 20px;
+#fullname-input {
+  border: 1px solid #1d1d1d;
+  background-color: #2d2d2d;
+  padding: 10px 24px;
+  border-radius: 28px;
+  font-size: 16px;
+  color: white;
+}
+
+#fullname-input:hover, #fullname-input:focus {
+  filter: drop-shadow(0 0 0.2rem #101010);
+}
+
+#fullname-button {
+  display: none;
+  background-color: #3078FF;
+  border: none;
   border-radius: 3px;
   font-size: 16px;
   color: white;
+  padding: 10px;
 }

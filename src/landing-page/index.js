@@ -1,26 +1,35 @@
 import React from 'react';
+import { Link } from 'react-dom';
 import "./styles.css";
 
 const LandingPage = () => {
   return (
-    <div className="landingpage-container">
-      <h1 className="landingpage-header">
-        Welcome to Socket.IO-Chat
-      </h1>
-      <form className="name-form">
-        <label htmlFor="firstname-input">First name</label>
-        <input
-        id="firstname-input"
-        placeholder="Your firstname"
-        />
-        <label htmlFor="lastname-input">Last name</label>
-        <input
-        id="lastname-input"
-        placeholder="Your lastname"
-        />
-        <button type="submit">Enter</button>
-      </form>
-    </div>
+    <main className="landingpage-container">
+      <a
+      className="landingpage-header"
+      href="https://github.com/jsphkm/socket.io-chat"
+      rel="noopener noreferrer"
+      target="_blank"
+      >
+        Socket.IO-Chat
+      </a>
+      <div className="landingpage-subcontainer">
+        <div className="preview-container">
+          <div className="preview-icon-container">
+            <div className="preview-icon"></div>
+            <div className="preview-initials">AN</div>
+          </div>
+          <div className="preview-fullname">Anonymous</div>
+        </div>
+        <form className="name-form">
+          <input
+          id="fullname-input"
+          placeholder="Enter Your Full Name"
+          />
+          <button id="fullname-button" type="submit">Enter</button>
+        </form>
+      </div>
+    </main>
   )
 }
 
