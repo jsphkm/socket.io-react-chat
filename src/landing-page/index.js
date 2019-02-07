@@ -1,5 +1,8 @@
 import React from 'react';
 import "./styles.css";
+import FullnameInput from '../fullname-input/component';
+import { withFormik, Form } from 'formik';
+import * as Yup from 'yup';
 
 const LandingPage = () => {
   return (
@@ -20,16 +23,29 @@ const LandingPage = () => {
           </div>
           <div className="preview-fullname">Anonymous</div>
         </div>
-        <form className="name-form">
-          <input
-          id="fullname-input"
+        <Form className="name-form">
+          <FullnameInput
+          name="fullname"
+          classname="fullname-input"
+          type="text"
           placeholder="Your Full Name"
           />
           <button id="fullname-button" type="submit">Enter</button>
-        </form>
+        </Form>
       </div>
     </main>
   )
 }
+
+const FullnameForm = withFormik({
+  mapPropsToValues({fullname}) {
+    return {
+      fullname: fullname || ''
+    }
+  },
+  validationSchema: Yup.object().shape({
+    fullname: Yup.string().min(2).required()
+  })
+})(LandingPage)
 
 export default LandingPage;
