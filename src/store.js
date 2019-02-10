@@ -1,14 +1,13 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { logger } from 'redux-logger';
-import mainReducer from './reducers/main';
-// import { formReducer } from 'redux-form';
+import landingpageReducer from './reducers/main';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   combineReducers({
-    main: mainReducer,
+    main: landingpageReducer,
   }),
   composeEnhancer(applyMiddleware(logger, thunk))
 )

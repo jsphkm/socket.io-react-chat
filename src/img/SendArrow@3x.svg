@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="84px" height="95px" viewBox="0 0 84 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>SendArrow@3x</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="SendButton" transform="translate(-44.000000, -39.000000)" stroke="#FFFFFF" stroke-width="14">
+            <g id="SendArrow">
+                <g transform="translate(51.000000, 46.000000)">
+                    <polyline id="Path" stroke-linejoin="round" points="69.8516839 33.4800308 34.925842 1.86517468e-14 -7.03437308e-13 33.4800308"></polyline>
+                    <path d="M34.925842,0 L35.4684066,80.5285654" id="Path-2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

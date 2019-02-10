@@ -1,13 +1,21 @@
-// import * as landing from '../actions/landing';
+import * as landingpage from '../actions/landingpage';
+import faker from 'faker';
 
 const initialState = {
-  landing: {
-    fullname: 'Anonymous'
+  landingpage: {
+    fullname: `${faker.name.firstName()} ${faker.name.lastName()}`
   },
 }
 
-const mainReducer = (state=initialState, action) => {
+const landingpageReducer = (state=initialState, action) => {
+  if (action.type === landingpage.ONCHANGE_FULLNAME) {
+    return Object.assign({}, state, {
+      landingpage: {
+        fullname: action.fullname
+      }
+    })
+  }
   return state;
 }
 
-export default mainReducer;
+export default landingpageReducer;
