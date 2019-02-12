@@ -2,7 +2,7 @@ import React from 'react';
 import "./styles.css";
 import { connect } from 'react-redux';
 import { updateFullName } from '../actions/landingpage';
-import SendArrow from '../img/SendArrow';
+import LandingRight from '../landing-right';
 
 
 class LandingPage extends React.Component {
@@ -34,21 +34,7 @@ class LandingPage extends React.Component {
               />
             <button type="submit" id="fullname-button">Enter</button>
           </div>
-          <div className="landingpage-right">
-            <div id="messages"></div>
-            <div className="message-input-container">
-              <input
-                type="text"
-                id="message-input"
-                placeholder="Your message"
-                rows="1"
-              ></input>
-              <button className="message-button" type="submit">
-                {/* <div className="submit-arrow"></div> */}
-                <SendArrow />
-              </button>
-            </div>
-          </div>
+          <LandingRight />
         </div>
       </main>
     )
