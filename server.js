@@ -6,17 +6,21 @@ const io = require('socket.io')(server);
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => (
-  res.sendFile(`${__dirname}/public/index.html`)
-));
+app.get('/', (req, res) => {
+  console.log('has reached to app get');
+  res.sendFile(`${__dirname}/public/index.html`);
+});
 
 io.on('connection', (socket) => {
+  console.log('has made connection');
   socket.on('join_room', (username) => {
+    console.log('has joined room');
     socket.join('chat room');
     socket.broadcast.emit('user_connect', `${username} has joined the room`);
     io.emit('join_room', username);
 
     socket.on('disconnect', () => {
+      console.log('has disconnected');
       socket.broadcast.emit('user_disconnect', `${username} has left the room`);
     });
   });
