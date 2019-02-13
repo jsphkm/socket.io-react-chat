@@ -14,17 +14,17 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  console.log(io.rooms);
-  socket.on('join_room', (username) => {
-    console.log('has joined room');
-    socket.join('chat room');
+  socket.on('join_room', (data) => {
     console.log(io.rooms);
-    socket.broadcast.emit('user_connect', `${username} has joined the room`);
-    io.emit('join_room', username);
+    console.log(`${data.username} has joined room`);
+    socket.join(data.roomname);
+    console.log(io.rooms);
+    socket.broadcast.emit('user_connect', `${data.username} has joined the room`);
+    io.emit('join_room', data.username);
 
     socket.on('disconnect', () => {
       console.log('has disconnected');
-      socket.broadcast.emit('user_disconnect', `${username} has left the room`);
+      socket.broadcast.emit('user_disconnect', `${data.username} has left the room`);
     });
   });
 

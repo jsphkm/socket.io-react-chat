@@ -4,23 +4,23 @@ import { connect } from 'react-redux';
 import { updateFullName } from '../actions/landingpage';
 import LandingRight from '../landing-right';
 import CreateNewroom from '../create-newroom';
+import { socket } from '../socket';
 
 class LandingPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {roomname: ''};
+  componentDidMount() {
+    socket.on('user_connect', (msg) => {
+      console.log(`append user has connected message: ${msg}`);
+    });
   }
+
+  componentWillUnmount() {
+    socket.on('user_disconnect', (msg) => {
+      console.log(`append user has disconnected message: ${msg}`);
+    })
+  }
+
   changeInput(e) {
     return this.props.dispatch(updateFullName(e.target.value));
-  }
-
-  createRoom(e) {
-    e.preventDefault();
-    console.log(this.state.value);
-  }
-
-  roomnameChange(e) {
-    this.setState({value: e.target.value});
   }
 
   render() {

@@ -1,28 +1,13 @@
 import React from 'react';
 import SendArrow from '../img/SendArrow';
 import './styles.css';
-import io from 'socket.io-client';
-const socket = io.connect('http://localhost:8000');
+import { socket } from '../socket';
 
 class LandingRight extends React.Component {
-  constructor(props) {
-    super(props);
-    socket.on('user_connect', (msg) => {
-      console.log('append user has connected message');
-    });
-    socket.on('user_disconnect', (msg) => {
-      console.log('append user has disconnected message');
-    })
-  }
-
   messagesubmit(e){
     e.preventDefault();
     console.log(e);
     // socket.emit('chat message', val);
-  }
-
-  userconnect(){
-    socket.emit('join_room', 'this user has joined message thing');
   }
 
   render() {
@@ -36,6 +21,7 @@ class LandingRight extends React.Component {
             id="message-input"
             placeholder="Your message"
             rows="1"
+            onChange={(e) => this.changeMessage(e)}
             ></input>
           <button className="message-button" type="submit">
             <SendArrow />
