@@ -21,7 +21,7 @@ class LandingRight extends React.Component {
     // socket.emit('chat message', val);
   }
 
-  userdisconnect(){
+  userconnect(){
     socket.emit('join_room', 'this user has joined message thing');
   }
 
@@ -30,8 +30,6 @@ class LandingRight extends React.Component {
       <div className="landingpage-right">
         <div id="messages"></div>
         <div className="message-input-container">
-        <button onClick={() => this.userconnect()}>Connect</button>
-        <button onClick={() => this.userdisconnect()}>Connect</button>
         <form onSubmit={(e) => this.messagesubmit(e)}>
           <input
             type="text"
