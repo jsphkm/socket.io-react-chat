@@ -3,17 +3,26 @@ import "./styles.css";
 import { connect } from 'react-redux';
 import { updateFullName } from '../actions/landingpage';
 import LandingRight from '../landing-right';
-
+import CreateNewroom from '../create-newroom';
 
 class LandingPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {roomname: ''};
+  }
   changeInput(e) {
     return this.props.dispatch(updateFullName(e.target.value));
   }
 
   createRoom(e) {
     e.preventDefault();
-    console.log(e);
+    console.log(this.state.value);
   }
+
+  roomnameChange(e) {
+    this.setState({value: e.target.value});
+  }
+
   render() {
     return (
       <main className="landingpage-container">
@@ -38,12 +47,7 @@ class LandingPage extends React.Component {
             <h1 className="landingpage-left-chatroom">
               Chatrooms
             </h1>
-            <form onSubmit={(e) => this.createRoom(e)}>
-              <div className="newchannel-container">
-                <input id="channelname-input"></input>
-                <button>Join</button>
-              </div>
-            </form>
+            <CreateNewroom />
           </div>
           <LandingRight />
         </div>
@@ -53,7 +57,7 @@ class LandingPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  fullname: state.main.landingpage.fullname
+  fullname: state.main.fullname
 })
 
 export default connect(mapStateToProps)(LandingPage);
