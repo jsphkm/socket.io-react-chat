@@ -1,6 +1,7 @@
 import React from 'react';
 import { updateNewRoomName } from "../actions/landingpage";
 import { connect } from 'react-redux';
+import { socket } from '../socket';
 
 class CreateNewroom extends React.Component {
   roomnameChange(e) {
@@ -9,6 +10,13 @@ class CreateNewroom extends React.Component {
   createRoom(e) {
     e.preventDefault();
     console.log('form submitted' + this.props.newroomname);
+    console.log(this.props.fullname);
+    const joinnameObj = {
+      roomname: this.props.newroomname,
+      username: this.props.fullname,
+    }
+    socket.emit('join_room', joinnameObj);
+
   }
   render() {
     return (
@@ -27,7 +35,8 @@ class CreateNewroom extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  newroomname: state.main.newroomname
+  newroomname: state.main.newroomname,
+  fullname: state.main.fullname
 })
 
 export default connect(mapStateToProps)(CreateNewroom);
