@@ -9,3 +9,9 @@ export const updateNewRoomName = (val) => ({
   type: ONCHANGE_NEWROOMNAME,
   newroomname: val
 });
+
+export const ONCHANGE_CHATMESSAGE = 'ONCHANGE_CHATMESSAGE';
+export const updateChatMessage = (val) => ({
+  type: ONCHANGE_CHATMESSAGE,
+  chatmessage: val
+})

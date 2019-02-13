@@ -1,13 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import SendArrow from '../img/SendArrow';
 import './styles.css';
 import { socket } from '../socket';
+import { updateChatMessage } from '../actions/landingpage';
 
 class LandingRight extends React.Component {
   messagesubmit(e){
     e.preventDefault();
     console.log(e);
-    // socket.emit('chat message', val);
+    socket.emit('chat message', this.props.main.chatmessage);
+  }
+
+  changeMessage(e) {
+    return this.props.dispatch(updateChatMessage(e.target.value));
   }
 
   render() {
@@ -21,7 +27,7 @@ class LandingRight extends React.Component {
             id="message-input"
             placeholder="Your message"
             rows="1"
-            onChange={(e) => this.changeMessage(e)}
+            onChange={this.changeMessage.bind(this)}
             ></input>
           <button className="message-button" type="submit">
             <SendArrow />
@@ -33,4 +39,8 @@ class LandingRight extends React.Component {
   }
 }
 
-export default LandingRight;
+const mapStateToProps = state => ({
+  chatmessage: state.main.chatmessage
+})
+
+export default connect(mapStateToProps)(LandingRight);
