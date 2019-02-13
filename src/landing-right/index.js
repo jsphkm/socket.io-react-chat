@@ -9,7 +9,7 @@ class LandingRight extends React.Component {
   messagesubmit(e){
     e.preventDefault();
     console.log(e);
-    socket.emit('chat message', this.props.main.chatmessage);
+    socket.emit('chat message', this.props.chatmessage);
   }
 
   changeMessage(e) {
