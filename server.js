@@ -2,7 +2,9 @@ const express = require('express');
 
 const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+  pingTimeout: 60000,
+});
 
 app.use(express.static('public'));
 
@@ -12,10 +14,11 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  console.log('has made connection');
+  console.log(io.rooms);
   socket.on('join_room', (username) => {
     console.log('has joined room');
     socket.join('chat room');
+    console.log(io.rooms);
     socket.broadcast.emit('user_connect', `${username} has joined the room`);
     io.emit('join_room', username);
 

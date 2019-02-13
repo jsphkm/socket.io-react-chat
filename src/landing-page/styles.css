@@ -58,7 +58,7 @@
   margin-top: 50px;
 }
 
-#fullname-input {
+#fullname-input, #channelname-input {
   border: 1px solid #1d1d1d;
   background-color: #2d2d2d;
   padding: 10px 24px;
@@ -66,10 +66,6 @@
   font-size: 15px;
   color: white;
   margin-top: 24px;
-}
-
-#fullname-input:hover, #fullname-input:focus {
-  filter: drop-shadow(0 0 0.2rem #101010);
 }
 
 #fullname-button {

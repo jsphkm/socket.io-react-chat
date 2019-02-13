@@ -9,6 +9,11 @@ class LandingPage extends React.Component {
   changeInput(e) {
     return this.props.dispatch(updateFullName(e.target.value));
   }
+
+  createRoom(e) {
+    e.preventDefault();
+    console.log(e);
+  }
   render() {
     return (
       <main className="landingpage-container">
@@ -22,9 +27,6 @@ class LandingPage extends React.Component {
         </a>
         <div className="landingpage-subcontainer">
           <div className="landingpage-left">
-            <h1 className="landingpage-left-chatroom">
-              Chatroom
-            </h1>
             <input
               type="text"
               name="fullname"
@@ -33,6 +35,15 @@ class LandingPage extends React.Component {
               defaultValue={this.props.fullname}
               />
             <button type="submit" id="fullname-button">Enter</button>
+            <h1 className="landingpage-left-chatroom">
+              Chatrooms
+            </h1>
+            <form onSubmit={(e) => this.createRoom(e)}>
+              <div className="newchannel-container">
+                <input id="channelname-input"></input>
+                <button>Join</button>
+              </div>
+            </form>
           </div>
           <LandingRight />
         </div>
