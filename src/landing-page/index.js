@@ -40,6 +40,7 @@ class LandingPage extends React.Component {
         </a>
         <div className="landingpage-subcontainer">
           <div className="landingpage-left">
+            <label htmlFor="fullname-input">Your name</label>
             <input
               type="text"
               name="fullname"
