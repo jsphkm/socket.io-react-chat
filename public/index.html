@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -40,3 +41,40 @@
     -->
   </body>
 </html>
+=======
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Socket.IO chat</title>
+  <link rel="stylesheet" href="/index.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,900" rel="stylesheet">
+  </head>
+  <body>
+    <div id="chatroom-container">
+      <div id="chat-container">
+        <ul id="messages"></ul>
+        <form id="message-form" action="">
+          <input id="m" autocomplete="off" /><button>Send</button>
+        </form>
+      </div>
+      <div id="users-container">
+        <form id="username-form" action="">
+          <label for="username-input">Username:</label>
+          <input 
+            id="username-input" type="text" placeholder="Type your username" required />
+          <button id="enter-button" type="submit">Enter Chat</button>
+        </form>
+        <ul id="users"></ul>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
+>>>>>>> master
