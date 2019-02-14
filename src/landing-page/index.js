@@ -32,11 +32,11 @@ class LandingPage extends React.Component {
       <main className="landingpage-container">
         <a
         className="landingpage-header"
-        href="https://github.com/jsphkm/socket.io-chat"
+        href="https://github.com/jsphkm/socket.io-react-chat"
         rel="noopener noreferrer"
         target="_blank"
         >
-          Socket.IO-Chat
+          Socket.IO-React-Chat
         </a>
         <div className="landingpage-subcontainer">
           <div className="landingpage-left">
