@@ -1,5 +1,5 @@
-# socket.io-chat
-Basic chat app using Socket.IO
+# socket.io-react-chat
+Basic chat app using Socket.IO and React
 
 ## Getting Started
 - Clone the repository and run `npm install` to download the dependencies.
