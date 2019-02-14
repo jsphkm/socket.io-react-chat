@@ -1,0 +1,96 @@
+.landingpage-subcontainer {
+  display: flex;
+  /* flex-direction: row; */
+  height: 100vh;
+}
+
+.landingpage-left {
+  width: 260px;
+  padding-top: 45px;
+}
+
+.landingpage-right {
+  flex: 1;
+}
+
+.landingpage-header {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+
+.preview-icon-container {
+  position: relative;
+  width: 45px;
+  height: 45px;
+}
+
+.preview-icon {
+  background: linear-gradient(#595959, #373737);
+  border-radius: 45px;
+  height: 100%;
+}
+
+.preview-fullname {
+  font-size: 18px;
+}
+
+.preview-initials {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  font-size: 20px;
+}
+
+.name-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+#fullname-input, #channelname-input {
+  border: 1px solid #1d1d1d;
+  background-color: #2d2d2d;
+  padding: 10px 24px;
+  border-radius: 28px;
+  font-size: 15px;
+  color: white;
+  margin-top: 24px;
+}
+
+#fullname-button {
+  display: none;
+  background-color: #3078FF;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  color: white;
+  padding: 10px;
+}
+
+.field-error {
+  color: red;
+  font-size: 14px;
+  margin: 10px 5px;
+  justify-content: center;
+  display: flex;
+}
+
+.landingpage-left {
+  padding-left: 15px;
+  border-right: 1px solid #2f2f2f;
+}
+
+.landingpage-left-chatroom {
+  font-size: 14px;
+}
