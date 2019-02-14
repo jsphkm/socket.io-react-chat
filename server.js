@@ -16,11 +16,11 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   socket.on('join_room', (data) => {
     console.log(io.rooms);
-    console.log(`${data.username} has joined room`);
     socket.join(data.roomname);
-    console.log(io.rooms);
-    socket.broadcast.emit('user_connect', `${data.username} has joined the room`);
-    io.emit('join_room', data.username);
+    console.log(`${data.username} has joined the room called ${data.roomname}`);
+    // socket.broadcast.emit('user_connect', `${data.username} has joined the room`);
+    io.to(data.roomname).emit('user_connect', `${data.username} has joined the room`);
+    io.to(data.roomname).emit('join_room', data.username);
 
     socket.on('disconnect', () => {
       console.log('has disconnected');

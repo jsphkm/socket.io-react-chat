@@ -10,7 +10,6 @@ class CreateNewroom extends React.Component {
   createRoom(e) {
     e.preventDefault();
     console.log('form submitted' + this.props.newroomname);
-    console.log(this.props.fullname);
     const joinnameObj = {
       roomname: this.props.newroomname,
       username: this.props.fullname,

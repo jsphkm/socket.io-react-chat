@@ -11,6 +11,10 @@ class LandingPage extends React.Component {
     socket.on('user_connect', (msg) => {
       console.log(`append user has connected message: ${msg}`);
     });
+
+    socket.on('join_room', username => (
+      console.log(`${username} should be added to the chat members list`)
+    ))
   }
 
   componentWillUnmount() {
