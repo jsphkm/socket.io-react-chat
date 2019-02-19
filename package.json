@@ -20,7 +20,7 @@
     "yup": "^0.26.10"
   },
   "scripts": {
-    "start": "concurrently 'react-scripts start' 'node server.js'",
+    "start": "concurrently 'react-scripts start' 'node serverstart.js'",
     "build": "react-scripts build",
     "test": "concurrently \"react-scripts test\" \"mocha\"",
     "eject": "react-scripts eject"

@@ -1,5 +1,9 @@
 const express = require('express');
+const socketio = require('socket.io');
 const app = express();
+
+// Need to move the codes below to config.js
+const PORT = 80;
 // // const server = require('http').Server(app);
 // const server = app.listen(80);
 // const io = require('socket.io')(server, {
@@ -38,14 +42,13 @@ app.get('/', (req, res) => {
 //   console.log('listening on *:8000')
 // ));
 
-// Need to move the codes below to config.js
-const PORT = 80;
-
-let server = '';
-let io = '';
-const startServer = testEnv => {
+// let server = '';
+// let io = '';
+function startServer(data) {
   // const server = require('http').Server(app);
-  server = app.listen(PORT, () => {
+  // console.log(PORT);
+  // console.log({testEnv, app, PORT});
+  let server = app.listen(PORT, () => {
     console.log(`Express server is listening on port ${PORT}`)
   }).on('error', err => {
     console.log('Express has failed to connect');
@@ -55,12 +58,12 @@ const startServer = testEnv => {
   //   pingTimeout: 60000,
   // });
   //io = require('socket.io')(server);
-  io = require('socket.io')(server, {
-    pingTimeout: 60000,
-  });
+  // let io = data.socketio(server, {
+  //   pingTimeout: 60000,
+  // });
 };
 
-const stopServer = () => {
+function stopServer() {
   server.close(err => {
     if (err) {
       return reject(err);
@@ -70,19 +73,19 @@ const stopServer = () => {
   });
 }
 
-startServer();
+// startServer();
 
-io.on('connection', (socket) => {
-  console.log('connected to default io on /');
+// io.on('connection', (socket) => {
+//   console.log('connected to default io on /');
 
-  socket.on('connectNamespace', (data) => {
-    console.log('connectNamespace event detected');
-    let nsp = io.of(`/${data.namespace}`);
-    nsp.on('connection', (newsocket) => {
-      console.log('connected using new namespace');
-    })
-  })
-})
+//   socket.on('connectNamespace', (data) => {
+//     console.log('connectNamespace event detected');
+//     let nsp = io.of(`/${data.namespace}`);
+//     nsp.on('connection', (newsocket) => {
+//       console.log('connected using new namespace');
+//     })
+//   })
+// })
 
 
-module.export = { app, startServer, stopServer};
+module.exports = { app, startServer, stopServer };
