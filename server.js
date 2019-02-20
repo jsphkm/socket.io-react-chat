@@ -1,9 +1,7 @@
 const express = require('express');
 const socketio = require('socket.io');
-const app = express();
 
-// Need to move the codes below to config.js
-const PORT = 80;
+const app = express();
 // // const server = require('http').Server(app);
 // const server = app.listen(80);
 // const io = require('socket.io')(server, {
@@ -13,8 +11,7 @@ const PORT = 80;
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  console.log('has reached to app get');
-  res.sendFile(`${__dirname}/public/index.html`);
+  res.status(200).sendFile(`${__dirname}/public/index.html`);
 });
 
 // io.on('connection', (socket) => {
@@ -44,16 +41,17 @@ app.get('/', (req, res) => {
 
 // let server = '';
 // let io = '';
-function startServer(data) {
+function startServer() {
   // const server = require('http').Server(app);
   // console.log(PORT);
   // console.log({testEnv, app, PORT});
-  let server = app.listen(PORT, () => {
+  const server = app.listen(PORT = 80, () => {
     console.log(`Express server is listening on port ${PORT}`)
   }).on('error', err => {
-    console.log('Express has failed to connect');
-    reject(err);
+    console.error('Express has failed to connect', err);
   });
+
+  return server;
   // const io = require('socket.io')(server, {
   //   pingTimeout: 60000,
   // });
@@ -63,10 +61,10 @@ function startServer(data) {
   // });
 };
 
-function stopServer() {
+function stopServer(server) {
   server.close(err => {
     if (err) {
-      return reject(err);
+      console.error('Express has failed to disconnect', err);
     } else {
       console.log('Express server has shut down');
     }
