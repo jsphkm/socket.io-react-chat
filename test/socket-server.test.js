@@ -1,6 +1,14 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const { app, startServer, stopServer } = require('../server');
+const {
+  app,
+  startServer,
+  stopServer,
+  startSocketServer,
+  stopSocketServer,
+  connectNameSpace,
+} = require('../server');
+const clientio = require('socket.io-client');
 
 const expect = chai.expect;
 chai.use(chaiHttp);
@@ -12,6 +20,8 @@ describe('Integration tests for server.js', function() {
   //   socketio
   // };
   let server;
+  let socketserver;
+  let socketio;
 
   before(function() {
     server = startServer();
@@ -20,7 +30,6 @@ describe('Integration tests for server.js', function() {
   after(function(done) {
     stopServer(server);
     done();
-    // server.close(done);
   });
 
   describe('GET', function() {
@@ -35,9 +44,25 @@ describe('Integration tests for server.js', function() {
     )
   })
 
-  describe('NAMESPACE', function() {
-    it('Should connect to default namespace', function(done) {
-      return done();
-    });
-  });
+  describe('SOCKET SERVER', function() {
+    it('Should start the socket server', (done) => {
+      const res = startSocketServer('/test');
+      socketserver = res[0];
+      socketio = res[1];
+      done();
+    })
+
+    it('Should connect to namespace', (done) => {
+      const clientsocket = clientio('http://localhost', {
+        path: '/dynamic-101'
+      });
+      console.log(clientsocket);
+      done();
+    })
+
+    it('Should stop the socket server', (done) => {
+      stopSocketServer(socketserver);
+      done();
+    })
+  })
 });

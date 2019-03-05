@@ -1,5 +1,6 @@
 const express = require('express');
-const socketio = require('socket.io');
+// const socketio = require('socket.io');
+const SocketServer = require('socket.io');
 
 const app = express();
 // // const server = require('http').Server(app);
@@ -86,4 +87,60 @@ function stopServer(server) {
 // })
 
 
-module.exports = { app, startServer, stopServer };
+
+function startSocketServer(path = '/') {
+  const io = new SocketServer({
+    path: `${path}`,
+    serveClient: false,
+  });
+  // const server = require('http').Server(app);
+  const server = require('http').createServer();
+
+  io.attach(server, {
+    pingInterval: 10000,
+    pingTimeout: 5000,
+    cookie: false,
+  });
+  server.listen(8000, () => (
+    console.log('socket is listening on *:8000')
+  ));
+
+  // Create namespace dynamically
+  const dynamicNsp = io.of(/^\/dynamic-\d+$/).on('connect', (socket) => {
+    const newNamespace = socket.nsp;
+    // broadcast to all clients in the given sub-namespace
+    newNamespace.emit('hello');
+  })
+
+  // broadcast to all clients in each sub-namespace
+  dynamicNsp.emit('hello');
+
+
+  return [server, io];
+}
+
+function stopSocketServer(server) {
+  server.close(() => {
+    console.log('socket has been closed');
+  });
+}
+
+// function connectNameSpace(io) {
+//   const dynamicNsp = io.of(/^\/dynamic-\d+$/).on('connect', (socket) => {
+//     const newNamespace = socket.nsp;
+//     // broadcast to all clients in the given sub-namespace
+//     newNamespace.emit('hello');
+//   })
+
+//   // broadcast to all clients in each sub-namespace
+//   dynamicNsp.emit('hello');
+// }
+
+module.exports = {
+  app,
+  startServer,
+  stopServer,
+  startSocketServer,
+  stopSocketServer,
+  // connectNameSpace,
+};

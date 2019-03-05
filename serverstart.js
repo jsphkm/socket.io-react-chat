@@ -1,2 +1,3 @@
-const { startServer } = require('./server');
+const { startServer, startSocketServer } = require('./server');
 startServer();
+startSocketServer();
